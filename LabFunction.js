@@ -15,7 +15,7 @@ function triConvert(num){
 
   if (typeof num !== 'number') {
     msj = { name: 'TypeError', message: 'Please, type in a number' };
-    
+
     return msj.message;
   }
 
@@ -96,8 +96,7 @@ function triConvert(num){
   //10000000 and more
   if (numString.length === 8) {
     unitMillion = tens[parseInt(numString.charAt(0))];
-    unitMillion += units[parseInt(numString.charAt(1))];
-    unitMillion += million;
+    unitMillion += units[parseInt(numString.charAt(1))] + million;
 
     output = units[parseInt(numString.charAt(2))] + hundred;
     output += tens[parseInt(numString.charAt(3))];
