@@ -1,8 +1,8 @@
 'use strict';
 
 function triConvert(num){
-  var units = new Array('', ' one', ' two', ' three', ' four', ' five', ' six', ' seven', ' eight', ' nine', ' ten', ' eleven', ' twelve', ' thirteen', ' fourteen', ' fifteen', ' sixteen', ' seventeen', ' eighteen', ' nineteen');
-  var tens = new Array('', '', ' twenty', ' thirty', ' forty', ' fifty', ' sixty', ' seventy', ' eighty', ' ninety');
+  var units = ['', ' one', ' two', ' three', ' four', ' five', ' six', ' seven', ' eight', ' nine', ' ten', ' eleven', ' twelve', ' thirteen', ' fourteen', ' fifteen', ' sixteen', ' seventeen', ' eighteen', ' nineteen'];
+  var tens = ['', '', ' twenty', ' thirty', ' forty', ' fifty', ' sixty', ' seventy', ' eighty', ' ninety'];
   var hundred = ' hundred';
   var thousand = ' thousand';
   var million = ' million';
@@ -11,7 +11,6 @@ function triConvert(num){
   var unitBillion = '';
   var output = '';
   var msj = '';
-  var numString = num.toString();
 
   if (typeof num !== 'number') {
     msj = { name: 'TypeError', message: 'Please, type in a number' };
@@ -19,8 +18,10 @@ function triConvert(num){
     return msj.message;
   }
 
+  var numString = num.toString();
+
   if (numString.length > 12) {
-    msj = { name: 'TypeError', message: 'Warning, the number is the longest' };
+    msj = { name: 'TypeError', message: 'Warning, the number is longest' };
 
     return msj.message;
   }
@@ -187,4 +188,12 @@ function triConvert(num){
   return output;
 }
 
-triConvert(8786663847832222222);
+triConvert(200);
+
+console.assert(typeof triConvert(200) === 'string', '1');
+console.assert(triConvert(200) === ' two hundred', '2');
+console.assert(triConvert(20000000000000) === 'Warning, the number is longest', '3');
+console.assert(triConvert(true) === 'Please, type in a number', '4');
+console.assert(triConvert(false) === 'Please, type in a number', '5');
+console.assert(triConvert(undefined) === 'Please, type in a number', '6');
+console.assert(triConvert(null) === 'Please, type in a number', '7');
