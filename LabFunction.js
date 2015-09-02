@@ -84,10 +84,10 @@ function numberToWords ( number ) {
   if (numString.length === 7) {
     unitMillion = units[parseInt(numString.charAt(0))] + million;
 
-    output = units[parseInt(numString.charAt(1))] + hundred;
+    output = units[parseInt(numString.charAt(1))] ?  units[parseInt(numString.charAt(1))] + hundred : '';
     output += tens[parseInt(numString.charAt(2))];
-    output += units[parseInt(numString.charAt(3))] + thousand;
-    output += units[parseInt(numString.charAt(4))] + hundred;
+    output += units[parseInt(numString.charAt(3))] ? units[parseInt(numString.charAt(3))] + thousand : '';
+    output += units[parseInt(numString.charAt(4))] ? units[parseInt(numString.charAt(4))] + hundred : '';
     output += tens[parseInt(numString.charAt(5))];
     output += units[parseInt(numString.charAt(6))];
 
@@ -99,10 +99,10 @@ function numberToWords ( number ) {
     unitMillion = tens[parseInt(numString.charAt(0))];
     unitMillion += units[parseInt(numString.charAt(1))] + million;
 
-    output = units[parseInt(numString.charAt(2))] + hundred;
+    output = units[parseInt(numString.charAt(2))] ? units[parseInt(numString.charAt(2))] + hundred : '';
     output += tens[parseInt(numString.charAt(3))];
-    output += units[parseInt(numString.charAt(4))] + thousand;
-    output += units[parseInt(numString.charAt(5))] + hundred;
+    output += units[parseInt(numString.charAt(4))] ? units[parseInt(numString.charAt(4))] + thousand : '';
+    output += units[parseInt(numString.charAt(5))] ? units[parseInt(numString.charAt(5))] + hundred : '';
     output += tens[parseInt(numString.charAt(6))];
     output += units[parseInt(numString.charAt(7))];
 
@@ -115,10 +115,10 @@ function numberToWords ( number ) {
     unitMillion += tens[parseInt(numString.charAt(1))];
     unitMillion += units[parseInt(numString.charAt(2))] + million;
 
-    output = units[parseInt(numString.charAt(3))] + hundred;
+    output = units[parseInt(numString.charAt(3))] ? units[parseInt(numString.charAt(3))] + hundred : '';
     output += tens[parseInt(numString.charAt(4))];
-    output += units[parseInt(numString.charAt(5))] +  thousand;
-    output += units[parseInt(numString.charAt(6))] + hundred;
+    output += units[parseInt(numString.charAt(5))] ? units[parseInt(numString.charAt(5))] +  thousand : '';
+    output += units[parseInt(numString.charAt(6))] ? units[parseInt(numString.charAt(6))] + hundred : '';
     output += tens[parseInt(numString.charAt(7))];
     output += units[parseInt(numString.charAt(8))];
 
@@ -133,10 +133,10 @@ function numberToWords ( number ) {
     unitMillion += tens[parseInt(numString.charAt(2))];
     unitMillion += units[parseInt(numString.charAt(3))] + million;
 
-    output = units[parseInt(numString.charAt(4))] + hundred;
+    output = units[parseInt(numString.charAt(4))] ? units[parseInt(numString.charAt(4))] + hundred : '';
     output += tens[parseInt(numString.charAt(5))];
-    output += units[parseInt(numString.charAt(6))] + thousand;
-    output += units[parseInt(numString.charAt(7))] + hundred;
+    output += units[parseInt(numString.charAt(6))] ? units[parseInt(numString.charAt(6))] + thousand : '';
+    output += units[parseInt(numString.charAt(7))] ? units[parseInt(numString.charAt(7))] + hundred : '';
     output += tens[parseInt(numString.charAt(8))];
     output += units[parseInt(numString.charAt(9))];
 
@@ -152,10 +152,10 @@ function numberToWords ( number ) {
     unitMillion += tens[parseInt(numString.charAt(3))];
     unitMillion += units[parseInt(numString.charAt(4))] + million;
 
-    output = units[parseInt(numString.charAt(5))] + hundred;
+    output = units[parseInt(numString.charAt(5))] ? units[parseInt(numString.charAt(5))] + hundred : '';
     output += tens[parseInt(numString.charAt(6))];
-    output += units[parseInt(numString.charAt(7))] + thousand;
-    output += units[parseInt(numString.charAt(8))] + hundred;
+    output += units[parseInt(numString.charAt(7))] ? units[parseInt(numString.charAt(7))] + thousand : '';
+    output += units[parseInt(numString.charAt(8))] ? units[parseInt(numString.charAt(8))] + hundred : '';
     output += tens[parseInt(numString.charAt(9))];
     output += units[parseInt(numString.charAt(10))];
 
@@ -172,10 +172,10 @@ function numberToWords ( number ) {
     unitMillion += tens[parseInt(numString.charAt(4))];
     unitMillion += units[parseInt(numString.charAt(5))] + million;
 
-    output = units[parseInt(numString.charAt(6))] + hundred;
+    output = units[parseInt(numString.charAt(6))] ? units[parseInt(numString.charAt(6))] + hundred : '';
     output += tens[parseInt(numString.charAt(7))];
-    output += units[parseInt(numString.charAt(8))] + thousand;
-    output += units[parseInt(numString.charAt(9))] + hundred;
+    output += units[parseInt(numString.charAt(8))] ? units[parseInt(numString.charAt(8))] + thousand : '';
+    output += units[parseInt(numString.charAt(9))] ? units[parseInt(numString.charAt(9))] + hundred : '';
     output += tens[parseInt(numString.charAt(10))];
     output += units[parseInt(numString.charAt(11))];
 
@@ -188,7 +188,7 @@ function numberToWords ( number ) {
   return output;
 }
 
-numberToWords(2000000);
+numberToWords(2234567);
 
 console.assert(typeof numberToWords(200) === 'string', '1');
 console.assert(numberToWords(200) === ' two hundred', '2');
