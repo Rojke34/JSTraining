@@ -1,6 +1,6 @@
 'use strict';
 
-function triConvert(num){
+function numberToWords ( number ) {
   var units = ['', ' one', ' two', ' three', ' four', ' five', ' six', ' seven', ' eight', ' nine', ' ten', ' eleven', ' twelve', ' thirteen', ' fourteen', ' fifteen', ' sixteen', ' seventeen', ' eighteen', ' nineteen'];
   var tens = ['', '', ' twenty', ' thirty', ' forty', ' fifty', ' sixty', ' seventy', ' eighty', ' ninety'];
   var hundred = ' hundred';
@@ -12,13 +12,13 @@ function triConvert(num){
   var output = '';
   var msj = '';
 
-  if (typeof num !== 'number') {
+  if (typeof number!== 'number') {
     msj = { name: 'TypeError', message: 'Please, type in a number' };
 
     return msj.message;
   }
 
-  var numString = num.toString();
+  var numString = number.toString();
 
   if (numString.length > 12) {
     msj = { name: 'TypeError', message: 'Warning, the number is longest' };
@@ -27,13 +27,13 @@ function triConvert(num){
   }
 
   // Zero case
-  if (num === 0) {
+  if (number=== 0) {
     return 'zero';
   }
 
   //the case of 10, 11, 12 ,13, .... 19
-  if (num < 20) {
-    output = units[num];
+  if ( number < 20) {
+    output = units[number];
 
     return output;
   }
@@ -188,12 +188,12 @@ function triConvert(num){
   return output;
 }
 
-triConvert(200);
+numberToWords(2000000);
 
-console.assert(typeof triConvert(200) === 'string', '1');
-console.assert(triConvert(200) === ' two hundred', '2');
-console.assert(triConvert(20000000000000) === 'Warning, the number is longest', '3');
-console.assert(triConvert(true) === 'Please, type in a number', '4');
-console.assert(triConvert(false) === 'Please, type in a number', '5');
-console.assert(triConvert(undefined) === 'Please, type in a number', '6');
-console.assert(triConvert(null) === 'Please, type in a number', '7');
+console.assert(typeof numberToWords(200) === 'string', '1');
+console.assert(numberToWords(200) === ' two hundred', '2');
+console.assert(numberToWords(20000000000000) === 'Warning, the number is longest', '3');
+console.assert(numberToWords(true) === 'Please, type in a number', '4');
+console.assert(numberToWords(false) === 'Please, type in a number', '5');
+console.assert(numberToWords(undefined) === 'Please, type in a number', '6');
+console.assert(numberToWords(null) === 'Please, type in a number', '7');
