@@ -188,7 +188,7 @@ function numberToWords ( number ) {
   return output;
 }
 
-numberToWords(2234567);
+numberToWords(99999);
 
 console.assert(typeof numberToWords(200) === 'string', '1');
 console.assert(numberToWords(200) === ' two hundred', '2');
