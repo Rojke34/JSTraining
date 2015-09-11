@@ -62,7 +62,7 @@ function isValidCardNumber( number ){
   isItOk = sum % 10 === 0 && sum <= 150;
 
   isItOk ? printer('The number is valid') : printer('The number is not invalid');
-  
+
   return isItOk ? true : false;
 }
 
