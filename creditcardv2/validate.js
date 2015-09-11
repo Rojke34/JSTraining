@@ -1,26 +1,25 @@
 'use strict';
-
-function validateData( number, cvv ){
-  if( typeof (number && cvv) === 'number'){
-   return validateCardNumber( number );
-  }
-  return false;
+function printer( messaje ){
+  console.log( messaje );
 }
 
-function validateCardNumber( number ){
-  var numberToString = number.toString();
-  var numToSLength = numberToString.length;
-  if ( numToSLength === 16 || numToSLength === 14) {
-    return validateTypeCard(number) && isValidCard(number);
-  }
-  return false;
-}
+function isDataNumbers( number, cvv ){
+  var isNumbers = typeof number === 'number' &&  typeof cvv === 'number';
 
-function getData(number, expiryDate, expiryYear, cvv){
-  if(validateData(number, cvv) && validateDate(expiryDate, expiryYear)){
-    console.log('Your credit card is ok');
+  if (isNumbers) {
+    return isDataLength16o14( number )
   }else{
-    console.log('Your credit card has been expiried');
+    return false;
+  }
+}
+
+function isDataLength16o14( number ){
+  var numToSLength = number.toString().length;
+
+  if ( numToSLength === 16 || numToSLength === 14) {
+    return validateTypeCard(number) && isValidCardNumber(number);
+  }else{
+    return false;
   }
 }
 
@@ -29,19 +28,19 @@ function validateTypeCard( number ){
 
   switch (firstNumber) {
     case '3':
-      console.log('American Express')
+      printer('American Express')
       return true
       break;
     case '4':
-      console.log('Visa')
+      printer('Visa')
       return true
       break;
     case '5':
-      console.log('MasterCard')
+      printer('MasterCard')
       return true
       break;
     case '6':
-      console.log('Discover')
+      printer('Discover')
       return true
       break;
     default:
@@ -49,7 +48,8 @@ function validateTypeCard( number ){
   }
 }
 
-function isValidCard( number ){
+function isValidCardNumber( number ){
+  var isItOk;
   var sum = 0;
   var numToS = number.toString().split('');
 
@@ -58,35 +58,29 @@ function isValidCard( number ){
     numToS[index] = numberX2 > 9 ? numberX2 - 9 : numberX2;
   }
 
-  sum = sumOfVector(numToS)
+  sum = sumOfElementVector(numToS)
+  isItOk = sum % 10 === 0 && sum <= 150;
 
-  if (sum % 10 === 0 && sum <= 150) {
-    console.log('The number is valid');
-    return true;
-  }else{
-    console.log('The number is invalid');
-    return false;
-  }
+  isItOk ? printer('The number is valid') : printer('The number is not invalid');
+  
+  return isItOk ? true : false;
 }
 
-function sumOfVector( vector ){
+function sumOfElementVector( vector ){
   var totalSum = 0;
+
   for (var index = 0; index < vector.length; index++) {
     totalSum += parseInt(vector[index])
   }
+
   return totalSum;
 }
 
-function validateDate( expiryDate, expiryYear ){
-  var today = new Date(new Date()).getTime();
-  var newDate = new Date(expiryDate+'/1/'+expiryYear);
-  var date = new Date( newDate ).getTime();
-
-  if (date > today) {
-    console.log('Valid Date');
-    return true;
+// Main function *************************************
+function isValidCreditCard(number, expiryDate, expiryYear, cvv){
+  if(isDataNumbers(number, cvv) && validateDate(expiryDate, expiryYear)){
+    printer('Your credit card is ok');
   }else{
-    console.log('Invalid Date');
-    return false;
+    printer('Your credit card has been expiried');
   }
 }
