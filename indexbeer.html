@@ -1,0 +1,98 @@
+<html ng-app="beerSong">
+  <head>
+
+
+    <link rel="shortcut icon" href="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678063-beer-128.png" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <!-- Angular.js -->
+    <script src="http://code.angularjs.org/1.1.5/angular.min.js"></script>
+
+    <style>
+      h1{ text-align: center; }
+      .container { margin: 0 auto; }
+      .insert-enter {
+        -webkit-transform:scale(0);
+        -webkit-transition-property: all;
+        -webkit-transition-timing-function: ease-out-cubic;
+        -webkit-transition-duration: 400ms;
+      }
+      .insert-enter.insert-enter-active {
+        -webkit-transform:scale(1);
+      }
+      ul {
+        text-align: center;
+        list-style-type: none;
+        position:relative;
+        border: none;
+      }
+      .list-group{
+        box-shadow: none;
+      }
+      ul > .list-group-item{
+        background-color: transparent;
+        border: none;
+      }
+      input{ text-align: center; }
+      .insert-enter {
+        -webkit-transform:scale(0);
+        -webkit-transition-property: all;
+        -webkit-transition-timing-function: ease-out-cubic;
+        -webkit-transition-duration: 400ms;
+      }
+      .insert-enter.insert-enter-active {
+        -webkit-transform:scale(1);
+      }
+      .test {
+        -webkit-animation: glow linear .3s infinite;
+        animation: glow linear .3s infinite;
+      }
+      @-webkit-keyframes glow {
+        0% { background-color: #99FFFF; }
+        25% { background-color: #00FF33 }
+        50% { background-color: #3333FF; }
+        75% { background-color: #CC33FF}
+        100% { background-color: #FF6633; }
+      }
+      @keyframes glow {
+        0% { background-color: #99FFFF; }
+        25% { background-color: #00FF33 }
+        50% { background-color: #3333FF; }
+        75% { background-color: #CC33FF}
+        100% { background-color: #FF6633; }
+      }
+    </style>
+  </head>
+  <body ng-controller="BeerSongController as beerSong">
+      <h1>Beer Song in JavaScript</h1>
+
+      <div class="container">
+        <div class="input-group">
+          <input type="number" class="form-control" placeholder="How many times..." ng-model="numberOfTimes">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="beerSong.playSong(numberOfTimes)">Play 🎵</button>
+          </span>
+        </div>
+      </div>
+
+      <div class="container">
+
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="beerSong in beerSong.stanzas" ng-animate="{enter:'insert-enter'}" style="-webkit-transition-delay:{{$index * 500}}ms">
+            <span class="done">{{beerSong.text}}</span>
+          </li>
+        </ul>
+
+
+      </div>
+
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+      <script src="beerSong.js"></script>
+
+  </body>
+</html>

@@ -6,11 +6,7 @@ function printer( messaje ){
 function isDataNumbers( number, cvv ){
   var isNumbers = typeof number === 'number' &&  typeof cvv === 'number';
 
-  if (isNumbers) {
-    return isDataLength16o14( number )
-  }else{
-    return false;
-  }
+  return isNumbers ? isDataLength16o14( number ) : false;
 }
 
 function isDataLength16o14( number ){
@@ -52,6 +48,8 @@ function isValidCardNumber( number ){
   var isItOk;
   var sum = 0;
   var numToS = number.toString().split('');
+  var valid = 'The number is valid (~￣▽￣)~';
+  var invalid = 'The number is not invalid ╭( ◕﹏◕ )╮';
 
   for (var index = 0; index < numToS.length; index += 2 ) {
     var numberX2 = parseInt(numToS[index]) * 2
@@ -61,7 +59,7 @@ function isValidCardNumber( number ){
   sum = sumOfElementVector(numToS)
   isItOk = sum % 10 === 0 && sum <= 150;
 
-  isItOk ? printer('The number is valid') : printer('The number is not invalid');
+  isItOk ? printer( valid ) : printer( invalid );
 
   return isItOk ? true : false;
 }
@@ -76,11 +74,28 @@ function sumOfElementVector( vector ){
   return totalSum;
 }
 
+
+function validateDate( expiryDate, expiryYear ){
+  var today = +new Date();
+  var date  = +new Date(expiryDate+'/1/'+expiryYear);
+  var diff  = date > today;
+  var valid = 'Date is apparently valid ( ◠‿◠)';
+  var expiried = 'Your credit card has been expiried (✖╭╮✖)';
+
+  diff ? printer( valid ) : printer( expiried );
+  return diff ? true : false;
+}
+
 // Main function *************************************
-function isValidCreditCard(number, expiryDate, expiryYear, cvv){
+function isValidCreditCard( ){
+  var number = parseInt(document.getElementById('number').value);
+  var expiryDate = parseInt(document.getElementById('month').value);
+  var expiryYear = parseInt(document.getElementById('year').value);
+  var cvv = parseInt(document.getElementById('cvv').value);
+
   if(isDataNumbers(number, cvv) && validateDate(expiryDate, expiryYear)){
-    printer('Your credit card is ok');
+    printer('Pass. OK <(◕ ◡ ◕<)');
   }else{
-    printer('Your credit card has been expiried');
+    printer('It doesnt work (┛◉Д◉)┛彡┻━┻ ');
   }
 }
